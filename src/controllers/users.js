@@ -5,8 +5,9 @@ import bcrypt from "bcryptjs";
 
 
 export const getAll =  async(req, res) => {
-    
- if(validateJWT(req.headers['authorization'])===true){
+    const validar = validateJWT(req)
+    console.log(validar)
+ if(validar){
 
     try {        
         let results = await Users.findAll();
