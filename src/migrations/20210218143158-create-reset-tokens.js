@@ -1,3 +1,4 @@
+
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -9,7 +10,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       token: {
-        type: Sequelize.UUID
+        type: Sequelize.UUID,
+        allowNull: false,
       },
       expirationDate: {
         type: Sequelize.DATE

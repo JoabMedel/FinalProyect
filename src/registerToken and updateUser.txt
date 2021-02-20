@@ -1,0 +1,7 @@
+*add new token:
+    peticion de tipo "post" -> /reset-password
+    requiere id del usuario registrado en el atributo userId
+    token uuid generado de forma automatica.
+*metodo updateUser:
+    peticion de tipo "patch" -> /users/:id
+    rquiere UUID del token registrado en el atributo de resetToken
