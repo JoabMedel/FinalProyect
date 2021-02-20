@@ -10,19 +10,20 @@ export const generateJWT = (user) => {
 }
 
 
-export const verifyUsersId = async (req, res) => {
-    let bearerToken = req.header('authorization')
+export const validateJWT =(req, res) => {
+    let bearerToken = req.headers.authorization
     const token = bearerToken.split(' ')[1]
-    console.log(token)
-    if(await validateJWT(token)===true){
-        let idNum=Number(req.params.id)
-        console.log(idNum)
-        const results = await Users.findOne({where: {id:idNum},atributtes:"lastName"});
-        console.log(typeof req.params.id)
-        return res.json(results);
-    }else{
-        return res.status(401).json({
-            message:"token no valido"
-        })
+    
+    if(token){
+        try{
+        const decode = jwt.verify(token,process.env.SECRET_KEY)
+       return decode
         }
-}
+        catch(error){
+            console.error();
+            return false
+        }
+    }else{
+        return false
+        }
+   }
