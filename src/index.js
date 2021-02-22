@@ -7,12 +7,13 @@ import rolesUsersRouter from "../src/routes/rolForUser";
 import registerToken from "../src/routes/reset-password";
 import updateUser from "../src/routes/update-password";
 import cors from "cors";
-
+import helmet from "helmet"
 
 
 const app = express();
 
 app.use(cors());
+app.use(helmet());
 app.use(express.json());
 app.use(registroRouter);
 app.use(loginRouter);
