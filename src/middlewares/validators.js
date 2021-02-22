@@ -5,8 +5,7 @@ export const userSchema = joi.object({
     firstName: joi.string().required().label("nombre").messages(spanishJoi),
     lastName: joi.string().required().messages(spanishJoi),
     email: joi.string().email().required().messages(spanishJoi),
-    password: joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).messages(spanishJoi),
-    resetToken: joi.string().required().messages(spanishJoi)
+    password: joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).messages(spanishJoi)
 });
 
 export const validate = (schema) => {
