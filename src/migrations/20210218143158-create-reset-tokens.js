@@ -22,7 +22,6 @@ module.exports = {
           model:'Users',
           key:'id'
         }
-
       },
       active: {
         type: Sequelize.BOOLEAN
