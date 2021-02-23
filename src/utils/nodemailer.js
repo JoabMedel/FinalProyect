@@ -20,7 +20,7 @@ const smtpTransport = nodemailer.createTransport({
     service: "gmail",
     auth: {
         type: "OAuth2",
-        user: "oislasreyes@gmail.com",
+        user: "pedrofelipeortiz@gmail.com",
         clientId: googleClientId,
         clientSecret: googleSecret,
         refreshToken: googleRefreshToken,
@@ -31,17 +31,19 @@ const smtpTransport = nodemailer.createTransport({
     }
 });
 
-const templateEmail = fs.readFileSync(path.join(__dirname, "..", "templates", "lost_password.html"));
 
-const mailOptions = {
-    from: "oislasreyes@gmail.com",
-    to: "l_l_ok@hotmail.com",
-    subject: "Esta es una prueba del envio de correos con nodemailer",
-    generateTextFromHTML: true,
-    html: templateEmail
-}
+
+
 
 const sendEmail = () => {
+    const mailOptions = {
+        from: "pedrofelipeortiz@gmail.com",
+        to: "profelipeortiz@gmail.com",
+        subject: "Esta es una prueba del envio de correos con nodemailer",
+        generateTextFromHTML: true,
+        html: templateEmail
+    }
+    const templateEmail = fs.readFileSync(path.join(__dirname, "..", "templates", "lost_password.html"));
     smtpTransport.sendMail(mailOptions, (error, info) => {
         if(error){
             console.log(error);
