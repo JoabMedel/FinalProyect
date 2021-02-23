@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-
+import jwtAdmin from "express-jwt";
 
 export const generateJWT = (user) => {
     let token = jwt.sign(user, process.env.SECRET_KEY, {
@@ -26,4 +26,13 @@ export const validateJWT =(req, res) => {
     }else{
         return false
         }
+   }
+
+   export const validateAdmin = (req,res,next) => {
+        jwtAdmin(process.env.SECRET_KEY);
+
+        if(req.user.admin){
+            return next()
+        }
+        res.status(401).send({ message: 'not authorized' });
    }

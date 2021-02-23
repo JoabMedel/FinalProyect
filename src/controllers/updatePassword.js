@@ -5,8 +5,8 @@ import moment from "moment";
 
 export const updateUser = async (req,res) => {
     try{
-        let {resetToken,password} = req.body
-        let findToken = await ResetTokens.findOne({where: {token: resetToken, active: true}});
+        let {password} = req.body
+        let findToken = await ResetTokens.findOne({where: {token: req.query.tkn, active: true}});
         if(findToken){
             if(findToken.expirationDate>moment()){
                 const pass = password;
@@ -21,7 +21,8 @@ export const updateUser = async (req,res) => {
                 {
                     where:
                     {
-                        id:req.params.id
+                        id:req.query.uid,
+                        token:req.query.tkn
                     }
                 });
                 ResetTokens.update({
@@ -30,7 +31,7 @@ export const updateUser = async (req,res) => {
                 {
                     where:
                     {
-                        token:resetToken
+                        token:req.query.tkn
                     }
                 })
                return res.status(201).json({message:"Actualizacion exitosa"});
@@ -41,7 +42,7 @@ export const updateUser = async (req,res) => {
                 {
                     where:
                     {
-                        token:resetToken
+                        token:req.query.tkn
                     }
                 });
                 res.status(401).json({message:"tiempo de actualizacion expirado"});
