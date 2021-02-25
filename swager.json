@@ -1,0 +1,232 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "API PROJECT FINAL HECTOR Y FELIPE",
+      "description": "Sistema para administrar usuarios y cambios de claves",
+      "version": "1.0.0",
+      "contact":{
+        "email":"pedrofelipeortiz@gmail.com",
+        "name":"Felipe ortiz, Hector Rodriguez"
+        }
+      },
+        "servers":[{
+          "url":"http://localhost:8000/api/v1",
+          "description": "Desarrollo"
+        }],
+      
+      "paths": {
+        "/users":{
+          "get":{
+            "responses": {
+              "200":{
+                "description": "Obtener lista de usuarios del sistema"
+              }
+            },
+            "security": [
+              {
+                "jwt":[]
+              }
+            ]
+          }
+      },
+      "/singup":{
+        "post":{
+        "requestBody":{
+          "content":{
+            "aplication/json":{
+              "schema":{
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201":{
+            "description": "se ha registrado el usuario"
+          }
+        }
+       }
+      },
+    "/login":{
+          "post":{
+            "requestBody":{
+              "content":{
+                "aplication/json":{
+                  "schema":{
+                    "$ref": "#/components/schemas/login"
+                  }
+                }
+              }
+            },
+            "responses": {
+              "200":{
+                "description": "las credenciales de usuario son correctas"
+              }
+            }
+          }
+       },
+       "/users/:userID/update-password":{
+        "put":{
+          "requestBody":{
+            "content":{
+              "aplication/json":{
+                "schema":{
+                  "$ref": "#/components/schemas/login"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200":{
+              "description": "las credenciales de usuario son correctas"
+            }
+          }
+        }
+     },
+     "/reset-password":{
+      "post":{
+        "requestBody":{
+          "content":{
+            "aplication/json":{
+              "schema":{
+                "$ref": "#/components/schemas/login"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200":{
+            "description": "las credenciales de usuario son correctas"
+          }
+        }
+      }
+   },
+       "/roles":{
+        "post":{
+          "requestBody":{
+            "content":{
+              "aplication/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "name":{
+                    "type":"string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "201":{
+              "description": "se ha agregado un nuevo rol"
+            }
+          }
+        }
+     },
+     "/users/:userID/roles/:rolesID":{
+      "post":{
+        "requestBody":{
+          "content":{
+            "aplication/json":{
+              "schema":{
+                "type": "object",
+                "properties": {
+                  "userId":{
+                  "type":"string"
+                  },
+                  "roleId":{
+                    "type":"string"
+                    }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200":{
+            "description": "role agregado al usuario exitosamente"
+          }
+        }
+      },
+      "put":{
+        "requestBody":{
+          "content":{
+            "aplication/json":{
+              "schema":{
+                "type": "object",
+                "properties": {
+                  "userId":{
+                  "type":"string"
+                  },
+                  "roleId":{
+                    "type":"string"
+                    }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200":{
+            "description": "role actualizado exitosamente"
+          }
+        }
+      }
+   }  
+    },
+    "components":{
+      "schemas":{
+        "User":{
+          "type":"object",
+          "required":[
+            "firstName",
+            "lastName",
+            "email",
+            "password"
+          ],
+          "properties":{
+            "firstName":{
+              "type": "string"
+            },
+            "lasttName":{
+              "type": "string"
+            },
+            "email":{
+              "type": "string"
+            },
+            "password":{
+              "type": "string",
+              "minLength": 8
+            }
+
+          }
+        },
+        "login":{
+          "type":"object",
+          "required":[
+            "email",
+            "password"
+          ],
+          "properties":{
+            "email":{
+              "type": "string"
+            },
+            "password":{
+              "type": "string",
+              "minLength": 8
+            }
+
+          }
+        }
+      },
+      "securitySchemes": {
+        "jwt": {
+        "type":"http",
+        "scheme": "bearer",
+        "description": "JSON WEB TOKEN",
+        "bearerFormat": "JWT"
+        }
+      }
+    }
+  }
