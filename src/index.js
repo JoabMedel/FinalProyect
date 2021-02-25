@@ -16,14 +16,14 @@ const app = express();
 app.use(cors());
 app.use(helmet());
 app.use(express.json());
-app.use(registroRouter);
-app.use(loginRouter);
-app.use(rolesUsersRouter);
-app.use(rolesRouter);
-app.use(allusersRouter);
-app.use(registerToken);
-app.use(updateUser);
-app.use(routerSendMail);
+app.use("/api/v1",registroRouter);
+app.use("/api/v1",loginRouter);
+app.use("/api/v1",rolesUsersRouter);
+app.use("/api/v1",rolesRouter);
+app.use("/api/v1",allusersRouter);
+app.use("/api/v1",registerToken);
+app.use("/api/v1",updateUser);
+app.use("/api/v1",routerSendMail);
 
 
 
