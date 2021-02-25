@@ -65,6 +65,42 @@
             }
           }
        },
+       "/users/:userID/update-password":{
+        "put":{
+          "requestBody":{
+            "content":{
+              "aplication/json":{
+                "schema":{
+                  "$ref": "#/components/schemas/login"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200":{
+              "description": "las credenciales de usuario son correctas"
+            }
+          }
+        }
+     },
+     "/reset-password":{
+      "post":{
+        "requestBody":{
+          "content":{
+            "aplication/json":{
+              "schema":{
+                "$ref": "#/components/schemas/login"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200":{
+            "description": "las credenciales de usuario son correctas"
+          }
+        }
+      }
+   },
        "/roles":{
         "post":{
           "requestBody":{
@@ -110,6 +146,30 @@
         "responses": {
           "200":{
             "description": "role agregado al usuario exitosamente"
+          }
+        }
+      },
+      "put":{
+        "requestBody":{
+          "content":{
+            "aplication/json":{
+              "schema":{
+                "type": "object",
+                "properties": {
+                  "userId":{
+                  "type":"string"
+                  },
+                  "roleId":{
+                    "type":"string"
+                    }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200":{
+            "description": "role actualizado exitosamente"
           }
         }
       }
