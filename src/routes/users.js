@@ -1,4 +1,4 @@
-import express from "express";
+import express from "express"
 import {getAll} from "../controllers/users";
 import {getUser} from "../controllers/users";
 import jwtValidate from "express-jwt"
