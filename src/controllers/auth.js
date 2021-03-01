@@ -38,7 +38,7 @@ export const login = async (req, res) => {
 }
 
 export const signUp = async (req, res) => {
-    const {email, password} = req.body;
+    const {email} = req.body;
     const results = await Users.findOne({where: {email: email}});
     if(results){
         return res.status(400).json({

@@ -9,13 +9,17 @@ import registerToken from "../src/routes/reset-password";
 import routerSendMail from "../src/routes/sendMail";
 import cors from "cors";
 import helmet from "helmet"
+import swaggerUi from "swagger-ui-express"
+import swaggerDocument from "./swagger.json";
+
 
 
 const app = express();
-
+app.use(express.json());
+app.use('/api/v1/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(cors());
 app.use(helmet());
-app.use(express.json());
+
 app.use("/api/v1",registroRouter);
 app.use("/api/v1",loginRouter);
 app.use("/api/v1",rolesUsersRouter);
