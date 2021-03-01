@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey:"content_type_id"
       });
       this.hasMany(models.contents,{
-        foreignKey:"content_raiting"
+        foreignKey:"content_rating"
       })
     }
   };
