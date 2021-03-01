@@ -7,6 +7,7 @@ import rolesUsersRouter from "./routes/rolForUser";
 import updateUser from "./routes/update-password";
 import registerToken from "./routes/reset-password";
 import routerSendMail from "./routes/sendMail";
+import routerActors from "./routes/actor"
 import cors from "cors";
 import helmet from "helmet"
 import swaggerUi from "swagger-ui-express"
@@ -19,7 +20,7 @@ app.use(express.json());
 app.use('/api/v1/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(cors());
 app.use(helmet());
-
+app.use("/api/v1",routerActors);
 app.use("/api/v1",registroRouter);
 app.use("/api/v1",loginRouter);
 app.use("/api/v1",rolesUsersRouter);

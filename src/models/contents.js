@@ -13,10 +13,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey:"content_id"
       });
       this.belongsTo(models.content_types, {
-        foreignKey:"content_type"
+        foreignKey:"content_type_id"
       });
       this.belongsTo(models.content_ratings,{
-        foreignKey:"content_raiting"
+        foreignKey:"content_rating_id"
       });
       this.belongsToMany(models.actors,{
         through:"content_actors",
