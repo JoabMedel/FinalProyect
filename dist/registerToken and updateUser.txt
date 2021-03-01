@@ -1,0 +1,30 @@
+*add new token:
+    -peticion de tipo "post" -> /reset-password
+    -atributos a pasar para la peticion -> "email":"","password":"" -> (del usuario registrado).
+    -se agrego la dependencia de moment.
+        proceso:
+            Se hiso una validacion primeramente hacia la tabla de usuarios con email y password.
+            si los datos de la peticion realizada son validos o en este caso "true" pasa a ejecutar
+            la funcion para registrar nuevo token, donde hacemos la respectiva creacion de un nuevo dato,
+            en este caso sera el token.
+            como valores por defecto al momento de hacer el registro del token seran los siguientes.
+            token -> generado automaticamente con la dependencia para el uuid.
+            expirartionDate -> dependencia moment con tiempo de expiracion de 5min.
+            userId -> id del usuario encontrado.
+            active -> por defecto true.
+            En dado caso de que el correo o contrasena sean invalidos arroja un erro 401.
+*metodo updateUser:
+    -peticion de tipo "patch" -> /users/:id -> el id de la ruta sera del usuario que vamos a actualizar
+    -atributos a pasar para la peticion -> datos a modificar para el usuario y necesario el atributo 
+    "resetToken" con valor del token registrado.
+        proceso:
+            primeramente se evalua si el token existe y que "active" sea true.
+            Si se cumple la primera condicion vamos a evaluar el tiempo de expiracion del token
+            (para ellos se utilizo la dependencia de moment);
+            ejecutando asi una segunda condicion donde si el tiempo de expiracion del token es mayor
+            al tiempo en el que estamos actualmente se ejecutara la logica para actualizar el usuario 
+            con los nuevos datos enviados atraves de la peticion. Esta actualizacionde se efectuara al
+            usurio con el id que tenemos como param de la ruta -> "/:id".
+            Si el token no existe nos manda un error 401.
+            Si el tiempo de expiracion del token es menor al tiempo actual arroja un error 401.
+            Si no se registra el token arroja un error 401.

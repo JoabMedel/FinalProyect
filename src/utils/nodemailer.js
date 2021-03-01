@@ -37,7 +37,7 @@ const smtpTransport = nodemailer.createTransport({
 
 const sendEmail = (emailSolicited,token,userId) => {
     console.log(token,userId)
-    const url="http://finalProyectHectoryFelipe/reset-password?tkn=:"+token+"&uid="+userId
+    const url="http://finalProyectHectoryFelipe/reset-password?tkn="+token+"&uid="+userId
     const templateEmail = fs.readFileSync(path.join(__dirname, "..", "templates", "lost_password.html"));
     console.log('token'+token)
     const mailOptions = {
