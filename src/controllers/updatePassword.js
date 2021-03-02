@@ -5,24 +5,20 @@ import moment from "moment";
 
 export const updateUser = async (req,res) => {
     try{
-        let {password} = req.body
-        let findToken = await ResetTokens.findOne({where: {token: req.query.tkn, active: true}});
+        let {password,token} = req.body;
+        let findToken = await ResetTokens.findOne({where: {token: token, active: true}});
         if(findToken){
             if(findToken.expirationDate>moment()){
                 const pass = password;
                 const encryptpass = bcrypt.hashSync(pass,10);
                 password=encryptpass;
                 Users.update({
-                    firstName: req.body.firstName,
-                    lastName: req.body.lastName,
-                    email: req.body.email,
                     password: password
                 },
                 {
                     where:
                     {
                         id:req.query.uid,
-                        token:req.query.tkn
                     }
                 });
                 ResetTokens.update({

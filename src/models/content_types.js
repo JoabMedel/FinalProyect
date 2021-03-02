@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   class content_types extends Model {
     static associate(models) {
       this.hasMany(models.contents,{
-        foreignKey:"content_type"
+        foreignKey:"content_type",
       });
       this.hasMany(models.content_ratings,{
         foreignKey:"content_type_id"

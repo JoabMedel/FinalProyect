@@ -1,5 +1,5 @@
 import express from "express";
-import {addActor, updateActor} from "../controllers/actors";
+import {addActor, eraseActor, getActor, getActors, updateActor} from "../controllers/actors";
 import jwtValidate from "express-jwt";
 import {schemeActors,validate} from "../middlewares/validators";
 
@@ -7,7 +7,6 @@ const router = express.Router();
 
 router.post(
         "/actors",
-        validate(schemeActors),
         addActor
     );
     
@@ -19,7 +18,21 @@ router.put(
 
 router.get(
         "/actors",
-        validate(schemeActors),
-        updateActor
+        getActors
     );
+
+    router.get(
+        "/actors/:id",
+        validate(schemeActors),
+        getActor
+    );
+
+    router.delete(
+        "/actors/:id",
+        validate(schemeActors),
+        eraseActor
+    );
+
+    
+
 export default router;
