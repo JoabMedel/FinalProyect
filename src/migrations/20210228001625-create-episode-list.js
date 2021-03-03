@@ -2,7 +2,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('episode_lists', {
-      episode_id: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -18,7 +18,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         references:{
           model:"contents",
-          key:"content_id"
+          key:"id"
         }
       },
       release_date: {
@@ -34,8 +34,8 @@ module.exports = {
         type: Sequelize.TEXT
       },
       last_updated: {
-        allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Date.now()
       },
       episode_imdb_link: {
         type: Sequelize.STRING
@@ -43,6 +43,12 @@ module.exports = {
       episode_score_votes: {
         type: Sequelize.INTEGER
       },
+      createdAt: {
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        type: Sequelize.DATE
+      }
     });
   },
   down: async (queryInterface, Sequelize) => {

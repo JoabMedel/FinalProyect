@@ -16,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
   content_ratings.init({
     content_type_id: DataTypes.INTEGER,
     name: DataTypes.STRING,
-    description: DataTypes.TEXT
+    description: DataTypes.TEXT,
+    last_updated: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'content_ratings',

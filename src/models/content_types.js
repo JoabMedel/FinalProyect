@@ -14,7 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   content_types.init({
-    name: DataTypes.STRING
+    name: DataTypes.STRING,
+    last_updated: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'content_types',

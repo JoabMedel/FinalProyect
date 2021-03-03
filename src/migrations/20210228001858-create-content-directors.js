@@ -2,22 +2,28 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('content_directors', {
-      director_id: {
+      id: {
         type: Sequelize.INTEGER,
         references:{
           model:"directors",
-          key:"director_id"
+          key:"id"
         }
       },
       content_id: {
         type: Sequelize.INTEGER,
         references:{
           model:"contents",
-          key:"content_id"
+          key:"id"
         }
       },
       last_updated: {
-        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Date.now()
+      },
+      createdAt: {
+        type: Sequelize.DATE
+      },
+      updatedAt: {
         type: Sequelize.DATE
       }
     });

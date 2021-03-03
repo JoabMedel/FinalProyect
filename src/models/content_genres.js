@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
   };
   content_genres.init({
     genre_id: DataTypes.INTEGER,
-    content_id: DataTypes.INTEGER
+    content_id: DataTypes.INTEGER,
+    last_updated: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'content_genres',
