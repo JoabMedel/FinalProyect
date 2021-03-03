@@ -40,6 +40,7 @@ export const isEditor = (id)=>{
 export const isUser = (id)=>{
     return async (req , res, next)=>{
         let role = await getRole(1);
+        console.log(role)
         if(role==="Admin"||role==="Editor"||role==="Usuario"){
             next();
         }

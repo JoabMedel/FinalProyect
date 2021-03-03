@@ -1,4 +1,4 @@
-npx sequelize-cli model:generate --name Users --attributes firstName:string,lastName:string,email:string,password:string
+npx sequelize-cli model:generate --name Usersprueba --attributes firstName:string,lastName:string,email:string,password:string,createdAt:false
 
 npx sequelize-cli model:generate --name ResetTokens --attributes  token:UUID, expirationDate: timestamp, userId: integer, active:boolean
 
@@ -8,3 +8,4 @@ npx sequelize-cli model:generate --name UserRoles --attributes userId:integer, r
 npx sequelize-cli model:generate --name Roles --attributes name:string
 
 
+npx sequelize-cli model:generate --name Actors2 --attributes name:string,last_update:date

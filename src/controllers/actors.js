@@ -1,11 +1,12 @@
 
-import {actors} from "../models/";
-import {Users} from "../models/";
+import {Actors2} from "../models/";
+
 
 export const addActor = async (req, res) => {
     console.log(req.body)
     try{
-        const results = await actors.create(req.body);
+        console.log(Actors2)
+        const results = await Actors2.create(req.body);
         return res.status(201).json(results);}
 
     catch(error){
@@ -29,8 +30,10 @@ export const updateActor = async (req,res) => {
 }
 
 export const getActors =  async(req, res) => {
+    console.log('ingresa')
     try {        
         let results = await actors.findAll();
+        console.log('ingresa')
         res.json(results);
     } catch (error) {
         res.status(400).json({
