@@ -12,7 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   directors.init({
-    name: DataTypes.STRING
+    name: DataTypes.STRING,
+    last_updated: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'directors',

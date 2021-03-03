@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   actors.init({
     name: DataTypes.STRING,
+    last_updated: DataTypes.DATE,
   }, {
     sequelize,
     modelName: 'actors',

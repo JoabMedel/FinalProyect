@@ -2,7 +2,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('content_ratings', {
-      content_rating_id: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         references:{
           model:"content_types",
-          key:"content_type_id"
+          key:"id"
         }
       },
       name: {
@@ -22,7 +22,13 @@ module.exports = {
         type: Sequelize.TEXT
       },
       last_updated: {
-        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Date.now()
+      },
+      createdAt: {
+        type: Sequelize.DATE
+      },
+      updatedAt: {
         type: Sequelize.DATE
       }
     });

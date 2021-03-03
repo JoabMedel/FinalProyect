@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     episode_num: DataTypes.INTEGER,
     description: DataTypes.TEXT,
     episode_imdb_link: DataTypes.STRING,
-    episode_score_votes: DataTypes.INTEGER
+    episode_score_votes: DataTypes.INTEGER,
+    last_updated: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'episode_lists',
