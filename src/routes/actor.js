@@ -8,31 +8,34 @@ const router = express.Router();
 
 router.post(
         "/actors",
+        validate(schemeActors),
+        isUser(1),
         addActor
+      
     );
     
 router.put(
         "/actors/:id",
         validate(schemeActors),
-        isEditor,
+        isEditor(1),
         updateActor
     );
 
-router.get("/actors",getActors
+router.get("/actors",
+    isUser(1),
+    getActors
 
     );
 
     router.get(
         "/actors/:id",
-        validate(schemeActors),
-        isUser,
+        isUser(1),
         getActor
     );
 
     router.delete(
         "/actors/:id",
-        validate(schemeActors),
-        isAdmin,
+        isAdmin(1),
         eraseActor
     );
 

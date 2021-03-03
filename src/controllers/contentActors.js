@@ -1,5 +1,5 @@
 
-import {actors} from "../models/";
+import {actors} from "../models";
 
 
 export const addActor = async (req, res) => {
