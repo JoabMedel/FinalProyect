@@ -14,7 +14,7 @@ catch(error){
 export const isAdmin = (id)=>{
     return async (req , res, next)=>{
         let role = await getRole(1);
-        if(role==="admin"){
+        if(role==="Admin"){
             next();
         }
         else{

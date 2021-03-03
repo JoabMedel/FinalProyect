@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import moment from "moment";
 
 export const updateUser = async (req,res) => {
+    console.log('ingresa')
     try{
         let {password,token} = req.body;
         let findToken = await ResetTokens.findOne({where: {token: token, active: true}});
