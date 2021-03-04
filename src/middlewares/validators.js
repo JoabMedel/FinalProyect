@@ -25,6 +25,19 @@ export const schemeRol = joi.object({
 export const schemeActors = joi.object({
     name: joi.string().required().label("nombre").messages(spanishJoi)
 });
+export const schemeLanguages = joi.object({
+    name: joi.string().required().label("nombre").messages(spanishJoi)
+});
+export const schemecontent_directors = joi.object({
+    director_id: joi.number().required().messages(spanishJoi),
+    content_id: joi.number().required().messages(spanishJoi)
+});
+export const schemecontent_ratings = joi.object({
+    content_type_id: joi.number().required().messages(spanishJoi),
+    name: joi.string().required().label("nombre").messages(spanishJoi),
+    description: joi.string().required().label("nombre").messages(spanishJoi)
+
+});
 
 export const schemeAddRolUser = joi.object({
     userId: joi.number().integer()

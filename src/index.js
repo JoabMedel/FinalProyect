@@ -8,6 +8,9 @@ import updateUser from "./routes/update-password";
 import registerToken from "./routes/reset-password";
 import routerSendMail from "./routes/sendMail";
 import routerActors from "./routes/actor"
+import routerLenguages from "./routes/lenguages"
+import routerContentDirectors from "./routes/content_directors"
+import routerContentRatings from "./routes/content_ratings"
 import routerContent from"./routes/content"
 import cors from "cors";
 import helmet from "helmet"
@@ -22,7 +25,10 @@ app.use('/api/v1/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(cors());
 app.use(helmet());
 app.use("/api/v1",routerActors);
+app.use("/api/v1",routerLenguages);
 app.use("/api/v1",routerContent);
+app.use("/api/v1",routerContentDirectors);
+app.use("/api/v1",routerContentRatings);
 app.use("/api/v1",registroRouter);
 app.use("/api/v1",loginRouter);
 app.use("/api/v1",rolesUsersRouter);
