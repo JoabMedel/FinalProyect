@@ -1,5 +1,5 @@
 
-import {actors} from "../models/";
+import {actors,contents} from "../models/";
 
 
 export const addActor = async (req, res) => {
@@ -69,3 +69,27 @@ export const eraseActor=  async(req, res) => {
 
 }
 }
+
+export const getActorsContent = async (req, res) => {
+    try {
+      let results = await actors.findOne({where: {id:req.params.id},
+        include: [
+          {
+            model: contents,
+            attributes: ["title"],
+            through: {
+              attributes: [],
+            },
+          },
+        ],
+      });
+      res.json(results);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({
+        message: "Hubo un error al tratar de procesar tu petición",
+        error,
+      });
+    }
+  };
+  

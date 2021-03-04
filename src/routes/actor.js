@@ -1,5 +1,5 @@
 import express from "express";
-import {addActor, eraseActor, getActor, getActors, updateActor} from "../controllers/actors";
+import {addActor, eraseActor, getActor, getActors, getActorsContent, updateActor} from "../controllers/actors";
 import jwtValidate from "express-jwt";
 import {schemeActors,validate} from "../middlewares/validators";
 import { isAdmin, isEditor, isUser } from "../middlewares/roleAuth";
@@ -37,6 +37,11 @@ router.get("/actors",
         "/actors/:id",
         isAdmin(1),
         eraseActor
+    );
+
+    router.get("/actors/:id/contents",
+    getActorsContent
+
     );
 
    
