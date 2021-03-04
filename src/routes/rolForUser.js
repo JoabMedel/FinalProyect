@@ -5,7 +5,7 @@ import jwtValidate from "express-jwt";
 
 const router = express.Router();
 router.post(
-        "/roles/:roleId/",
+        "/users/:userID/roles/:rolesID",
         jwtValidate({secret: process.env.SECRET_KEY, algorithms: ['HS384'] }),
         validate(schemeAddRolUser),
         addRoleUser

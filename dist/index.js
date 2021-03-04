@@ -30,9 +30,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var express = require('express');
 
 var app = express();
+app.use(express.json());
 app.use((0, _cors.default)());
 app.use((0, _helmet.default)());
-app.use(express.json());
 app.use("/api/v1", _signup.default);
 app.use("/api/v1", _login.default);
 app.use("/api/v1", _rolForUser.default);

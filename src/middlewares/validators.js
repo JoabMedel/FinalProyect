@@ -22,6 +22,10 @@ export const schemeRol = joi.object({
     name: joi.string().required().label("nombre").messages(spanishJoi)
 });
 
+export const schemeActors = joi.object({
+    name: joi.string().required().label("nombre").messages(spanishJoi)
+});
+
 export const schemeAddRolUser = joi.object({
     userId: joi.number().integer()
 });

@@ -29,11 +29,11 @@
             ]
           }
       },
-      "/singup":{
+      "/signup":{
         "post":{
         "requestBody":{
           "content":{
-            "aplication/json":{
+            "application/json":{
               "schema":{
                 "$ref": "#/components/schemas/User"
               }
@@ -51,7 +51,7 @@
           "post":{
             "requestBody":{
               "content":{
-                "aplication/json":{
+                "application/json":{
                   "schema":{
                     "$ref": "#/components/schemas/login"
                   }
@@ -71,14 +71,14 @@
             "content":{
               "aplication/json":{
                 "schema":{
-                  "$ref": "#/components/schemas/login"
+                  "$ref": "#/components/schemas/User"
                 }
               }
             }
           },
           "responses": {
             "200":{
-              "description": "las credenciales de usuario son correctas"
+              "description": "el password ha sido actualizado"
             }
           }
         }
@@ -87,16 +87,21 @@
       "post":{
         "requestBody":{
           "content":{
-            "aplication/json":{
+            "application/json":{
               "schema":{
-                "$ref": "#/components/schemas/login"
+                "type": "object",
+                "properties": {
+                  "email":{
+                  "type":"string"
+                  }
+                }
               }
             }
           }
         },
         "responses": {
           "200":{
-            "description": "las credenciales de usuario son correctas"
+            "description": "El token fue enviado con exito"
           }
         }
       }
@@ -105,7 +110,7 @@
         "post":{
           "requestBody":{
             "content":{
-              "aplication/json":{
+              "application/json":{
                 "schema":{
                   "type": "object",
                   "properties": {
@@ -121,7 +126,12 @@
             "201":{
               "description": "se ha agregado un nuevo rol"
             }
-          }
+          },
+          "security": [
+            {
+              "jwt":[]
+            }
+          ]
         }
      },
      "/users/:userID/roles/:rolesID":{
@@ -133,10 +143,10 @@
                 "type": "object",
                 "properties": {
                   "userId":{
-                  "type":"string"
+                  "type":"integer"
                   },
                   "roleId":{
-                    "type":"string"
+                    "type":"integer"
                     }
                 }
               }
@@ -189,7 +199,7 @@
             "firstName":{
               "type": "string"
             },
-            "lasttName":{
+            "lastName":{
               "type": "string"
             },
             "email":{

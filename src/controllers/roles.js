@@ -12,10 +12,10 @@ export const addRole = async (req, res) => {
 
 export const addRoleUser = async (req, res) => {
     console.log('ingresa')
-    console.log(req.params.roleId)
+    console.log(req.params.rolesID)
     const userRole={
-        userId:req.body.userId,
-        roleId:req.params.roleId
+        userId:req.params.userID,
+        roleId:req.params.rolesID
     }
     try{
         const results = await UserRoles.create(userRole);

@@ -3,5 +3,6 @@ import {signUp} from "../controllers/auth";
 import {validate, userSchema} from "../middlewares/validators";
 const router = express.Router();
 
-router.post("/users",validate(userSchema), signUp);
+/* router.post("/singup",validate(userSchema), signUp); */
+router.post("/signup",validate(userSchema),signUp)
 export default router;

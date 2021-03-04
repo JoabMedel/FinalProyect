@@ -4,5 +4,5 @@ import {validate,userSchema} from "../middlewares/validators";
 
 const router = express.Router();
 
-router.patch("/users",validate(userSchema),updateUser);
+router.put("/users",updateUser);
 export default router;

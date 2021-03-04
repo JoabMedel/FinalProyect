@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   class content_actors extends Model {
     static associate(models) {
       this.belongsTo(models.actors,{
-        foreignKey:"actor_id"
+        foreignKey:"id"
       });
       this.belongsTo(models.contents,{
         foreignKey:"content_id"
