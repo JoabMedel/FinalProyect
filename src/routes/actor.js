@@ -39,6 +39,6 @@ router.get("/actors",
         eraseActor
     );
 
-    
+   
 
 export default router;
