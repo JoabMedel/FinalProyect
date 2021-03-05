@@ -1,22 +1,19 @@
+import {content_types} from "../models"
 
-import {content_actors} from "../models";
-
-
-export const addContentActor = async (req, res) => {
+export const addContentType = async (req, res) => {
     try{
-        const results = await content_actors.create(req.body);
+        const results = await content_types.create(req.body);
         return res.status(201).json(results);}
     catch(error){
         console.log(error);
     }}
 
-export const updateContentActor = async (req,res) => {
-    const findContentActor = await content_actors.findOne({where: {id:req.params.id}});
-    if(findContentActor){
+export const updateContenType = async (req,res) => {
+    const findContentType = await content_types.findOne({where: {id:req.params.id}});
+    if(findContentType){
         try{
-            content_actors.update({
-                actor_id:req.body.actor_id,
-                content_id:req.body.content_id
+            content_types.update({
+                name:req.body.name
             },{where: {id:req.params.id}});
             res.status(200).json({message:"actualizacion exitosa"});
         }catch(error){
@@ -27,10 +24,10 @@ export const updateContentActor = async (req,res) => {
     }
 }
 
-export const getContentActors =  async(req, res) => {
+export const getContentTypes =  async(req, res) => {
     try {     
         //agregar al endpoint un param "limit" para limitar la cantidad.   
-        let results = await content_actors.findAll({
+        let results = await content_types.findAll({
             limit: req.query.limit,
         });
         res.json(results);
@@ -41,9 +38,9 @@ export const getContentActors =  async(req, res) => {
     }
 };
 
-export const getOneContentActor=  async(req, res) => {
+export const getOneContentType=  async(req, res) => {
     try {        
-        let results = await content_actors.findOne({where: {id:req.params.id}});
+        let results = await content_types.findOne({where: {id:req.params.id}});
         res.json(results);
     } catch (error) {
         res.status(400).json({
@@ -53,11 +50,11 @@ export const getOneContentActor=  async(req, res) => {
 
 }
 
-export const eraseContentActor =  async(req, res) => {
-    const findContentActor = await content_actors.findOne({where: {id:req.params.id}});
-    if(findContentActor){
+export const eraseContentType =  async(req, res) => {
+    const findContentType = await content_types.findOne({where: {id:req.params.id}});
+    if(findContentType){
         try{      
-        content_actors.destroy({where: {id:req.params.id}});
+        content_types.destroy({where: {id:req.params.id}});
         res.status(200).json({message:"actualizacion exitosa"});
     } catch (error) {
         res.status(400).json({
