@@ -36,18 +36,14 @@ const smtpTransport = nodemailer.createTransport({
 
 
 const sendEmail = (emailSolicited,token,userId) => {
-    console.log(token,userId)
-    const url="http://finalProyectHectoryFelipe/reset-password?tkn="+token+"&uid="+userId
+    const url=`http://proyecto/reset-password?tkn=${token}&uid=${userId}`
     const templateEmail = fs.readFileSync(path.join(__dirname, "..", "templates", "lost_password.html"));
-    console.log('token'+token)
     const mailOptions = {
         from: "pedrofelipeortiz@gmail.com",
         to: emailSolicited,
         subject: "Solicitud para cambio de contrasena",
         text: url
     }
-    
-    console.log(templateEmail)
     smtpTransport.sendMail(mailOptions, (error, info) => {
         if(error){
             console.log(error);

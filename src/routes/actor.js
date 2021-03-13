@@ -1,49 +1,54 @@
 import express from "express";
-import {addActor, eraseActor, getActor, getActors, getActorsContent, updateActor} from "../controllers/actors";
+import {
+  addActor,
+  eraseActor,
+  getActor,
+  getActors,
+  getActorsContent,
+  updateActor
+} from "../controllers/actors";
 import jwtValidate from "express-jwt";
-import {schemeActors,validate} from "../middlewares/validators";
+import { schemeActors, validate } from "../middlewares/validators";
 import { isAdmin, isEditor, isUser } from "../middlewares/roleAuth";
 
 const router = express.Router();
 
 router.post(
-        "/actors",
-        validate(schemeActors),
-        isUser(1),
-        addActor
-      
-    );
-    
+  "/actors",
+  validate(schemeActors),
+  isEditor(),
+  addActor
+);
+
 router.put(
-        "/actors/:id",
-        validate(schemeActors),
-        isEditor(1),
-        updateActor
-    );
+  "/actors/:id",
+  validate(schemeActors),
+  isEditor(),
+  updateActor
+);
 
-router.get("/actors",
-    isUser(1),
-    getActors
+router.get(
+  "/actors",
+  isUser(),
+  getActors
+);
 
-    );
+router.get(
+  "/actors/:id",
+  isUser(),
+  getActor
+);
 
-    router.get(
-        "/actors/:id",
-        isUser(1),
-        getActor
-    );
+router.delete(
+  "/actors/:id",
+  isAdmin(),
+  eraseActor
+);
 
-    router.delete(
-        "/actors/:id",
-        isAdmin(1),
-        eraseActor
-    );
-
-    router.get("/actors/:id/contents",
-    getActorsContent
-
-    );
-
-   
+router.get(
+  "/actors/:id/contents",
+  isUser(),
+  getActorsContent
+);
 
 export default router;

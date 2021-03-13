@@ -1,42 +1,34 @@
 import express from "express";
-import {schemeepisode_list,validate} from "../middlewares/validators";
+import { schemeepisode_list, validate } from "../middlewares/validators";
 import { isAdmin, isEditor, isUser } from "../middlewares/roleAuth";
-import {  addepisode_list, eraseepisode_list, getepisode_lists, getepisode_list, updateepisode_list } from "../controllers/episode_list";
+import {
+  addepisode_list,
+  eraseepisode_list,
+  getepisode_lists,
+  getepisode_list,
+  updateepisode_list,
+} from "../controllers/episode_list";
 
 const router = express.Router();
 
+router.post(
+  "/episodelist",
+  isEditor(),
+  validate(schemeepisode_list),
+  addepisode_list
+);
 
-    router.post(
-        "/episodelist",
-        isUser(1),
-        addepisode_list
-      
-    );
-    
 router.put(
-        "/episodelist/:id",
-        isEditor(1),
-        updateepisode_list
-    );
+  "/episodelist/:id",
+  isEditor(),
+  validate(schemeepisode_list),
+  updateepisode_list
+);
 
-router.get("/episodelist",
-    isUser(1),
-    getepisode_lists
+router.get("/episodelist", isUser(), getepisode_lists);
 
-    );
+router.get("/episodelist/:id", isUser(), getepisode_list);
 
-    router.get(
-        "/episodelist/:id",
-        isUser(1),
-        getepisode_list
-    );
-
-    router.delete(
-        "/episodelist/:id",
-        isAdmin(1),
-        eraseepisode_list
-    );
+router.delete("/episodelist/:id", isAdmin(), eraseepisode_list);
 
 export default router;
-
-

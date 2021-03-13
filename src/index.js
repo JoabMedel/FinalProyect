@@ -7,49 +7,47 @@ import rolesUsersRouter from "./routes/rolForUser";
 import updateUser from "./routes/update-password";
 import registerToken from "./routes/reset-password";
 import routerSendMail from "./routes/sendMail";
-import routerActors from "./routes/actor"
-import routerLenguages from "./routes/lenguages"
-import routerContentDirectors from "./routes/content_directors"
-import routerContentRatings from "./routes/content_ratings"
-import routerEpisodeList from "./routes/episode_list"
-import routerContent from"./routes/content"
+import routerActors from "./routes/actor";
+import routerLenguages from "./routes/lenguages";
+import routerContentDirectors from "./routes/content_directors";
+import routerContentRatings from "./routes/content_ratings";
+import routerEpisodeList from "./routes/episode_list";
+import routerContent from "./routes/content";
 import contentActors from "./routes/contentActor";
 import contentGenres from "./routes/contentGenre";
 import contentType from "./routes/ContentType";
 import director from "./routes/director";
 import genre from "./routes/genre";
+import privUser from "./routes/signUpPrivilegedUser";
 import cors from "cors";
-import helmet from "helmet"
-import swaggerUi from "swagger-ui-express"
+import helmet from "helmet";
+import swaggerUi from "swagger-ui-express";
 import swaggerDocument from "./swagger.json";
-
-
 
 const app = express();
 app.use(express.json());
-app.use('/api/v1/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("/api/v1/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(cors());
 app.use(helmet());
-app.use("/api/v1",genre);
-app.use("/api/v1",director);
-app.use("/api/v1",contentType);
-app.use("/api/v1",contentGenres);
-app.use("/api/v1",contentActors);
-app.use("/api/v1",routerActors);
-app.use("/api/v1",routerLenguages);
-app.use("/api/v1",routerContent);
-app.use("/api/v1",routerEpisodeList);
-app.use("/api/v1",routerContentDirectors);
-app.use("/api/v1",routerContentRatings);
-app.use("/api/v1",registroRouter);
-app.use("/api/v1",loginRouter);
-app.use("/api/v1",rolesUsersRouter);
-app.use("/api/v1",rolesRouter);
-app.use("/api/v1",allusersRouter);
-app.use("/api/v1",registerToken);
-app.use("/api/v1",updateUser);
-app.use("/api/v1",routerSendMail);
-
-
+app.use("/api/v1", privUser);
+app.use("/api/v1", genre);
+app.use("/api/v1", director);
+app.use("/api/v1", contentType);
+app.use("/api/v1", contentGenres);
+app.use("/api/v1", contentActors);
+app.use("/api/v1", routerActors);
+app.use("/api/v1", routerLenguages);
+app.use("/api/v1", routerContent);
+app.use("/api/v1", routerEpisodeList);
+app.use("/api/v1", routerContentDirectors);
+app.use("/api/v1", routerContentRatings);
+app.use("/api/v1", registroRouter);
+app.use("/api/v1", loginRouter);
+app.use("/api/v1", rolesUsersRouter);
+app.use("/api/v1", rolesRouter);
+app.use("/api/v1", allusersRouter);
+app.use("/api/v1", registerToken);
+app.use("/api/v1", updateUser);
+app.use("/api/v1", routerSendMail);
 
 export default app;

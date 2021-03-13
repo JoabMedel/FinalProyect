@@ -16,7 +16,7 @@ export const validateJWT =(req, res) => {
     if(token){
         try{
         const decode = jwt.verify(token,process.env.SECRET_KEY)
-       return decode
+        return decode
         }
         catch(error){
             console.error();
